@@ -1,11 +1,11 @@
-# Bước 1: Build mã nguồn bằng Maven và Java 17
-FROM maven:3.9-eclipse-temurin-17 AS build
+# Bước 1: Build bằng Maven và Java 21
+FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
-# Bước 2: Chạy file JAR
-FROM eclipse-temurin:17-jre
+# Bước 2: Chạy file JAR với Java 21
+FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
