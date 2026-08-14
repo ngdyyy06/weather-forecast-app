@@ -1,0 +1,645 @@
+/* ============================================================
+   RESPONSIVE — Full Device Coverage
+   ============================================================
+   Breakpoints (desktop-first):
+     ≥ 1440px   Large desktop / widescreen
+     ≥ 1280px   Standard laptop (base design)
+     ≤ 1200px   Small laptop / large tablet landscape
+     ≤ 1024px   iPad Pro landscape / small laptop
+     ≤  900px   Tablet landscape / iPad Air landscape
+     ≤  768px   Tablet portrait / iPad mini / iPad portrait
+     ≤  600px   Large mobile / small tablet
+     ≤  480px   Mobile (iPhone 14 / Pixel)
+     ≤  390px   Small mobile (iPhone SE / Galaxy S)
+     ≤  320px   Very small mobile
+   ============================================================ */
+
+
+/* ============================================================
+   ≥ 1440px — Large Desktop / Widescreen
+   Extra breathing room
+   ============================================================ */
+@media (min-width: 1440px) {
+
+    .container {
+        padding: 28px clamp(56px, 6vw, 120px) 64px;
+    }
+
+    .app-header {
+        padding: 18px clamp(56px, 6vw, 120px);
+    }
+
+    .dashboard-layout {
+        grid-template-columns: 1fr 400px;
+        gap: 28px;
+    }
+
+    .dashboard-left,
+    .dashboard-right {
+        gap: 28px;
+    }
+
+    .main-card {
+        min-height: 320px;
+    }
+
+    .left #cityName {
+        font-size: 30px;
+    }
+
+    .temp span {
+        font-size: 80px;
+    }
+
+    .chart-wrapper {
+        height: clamp(280px, 30vh, 340px);
+    }
+}
+
+
+/* ============================================================
+   ≤ 1200px — Small Laptop / Large Tablet Landscape
+   Tighten sidebar, reduce spacing
+   ============================================================ */
+@media (max-width: 1200px) {
+
+    .dashboard-layout {
+        grid-template-columns: 1fr 320px;
+        gap: 18px;
+    }
+
+    .left {
+        flex: 0 0 42%;
+    }
+
+    .aqi-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hour-card {
+        flex: 0 0 105px;
+    }
+}
+
+
+/* ============================================================
+   ≤ 1024px — iPad Pro Landscape / Small Laptop
+   Collapse to 1-column grid, header stays 3-col
+   ============================================================ */
+@media (max-width: 1024px) {
+
+    /* Collapse dashboard to single column */
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* 7-Day forecast: back to horizontal scroll */
+    .forecast-container {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 12px;
+    }
+
+    /* Restore card layout for horizontal scroll */
+    .day-card {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        min-width: 115px;
+        padding: 16px 12px;
+    }
+
+    .day-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-card-hover);
+    }
+
+    .day-card h3 {
+        min-width: unset;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    .day-card img {
+        width: 44px;
+        height: 44px;
+    }
+
+    .temp-range {
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        margin-top: 0;
+    }
+
+    .max-temp { font-size: 15px; }
+    .min-temp { font-size: 13px; }
+
+    /* Air quality: full 6 cols (now full width) */
+    .aqi-details {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    /* Main card slightly shorter */
+    .main-card {
+        min-height: 250px;
+    }
+
+    .left {
+        flex: 0 0 40%;
+    }
+
+    .temp span {
+        font-size: 64px;
+    }
+
+    /* Chart */
+    .chart-wrapper {
+        height: 260px;
+    }
+}
+
+
+/* ============================================================
+   ≤ 900px — Tablet Landscape / iPad Air Landscape
+   Header search shrinks, content adjusts
+   ============================================================ */
+@media (max-width: 900px) {
+
+    .container {
+        padding: 0 0 40px;
+    }
+
+    .app-header {
+        padding: 14px 20px;
+        gap: 16px;
+    }
+
+    .header-brand h1 {
+        font-size: 19px;
+    }
+
+    .header-brand .subtitle {
+        font-size: 11px;
+    }
+
+    .header-search-wrapper {
+        max-width: 360px;
+    }
+
+    #locationBtn {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    /* Main card */
+    .left {
+        flex: 0 0 38%;
+        padding: 26px 22px;
+    }
+
+    .left #cityName {
+        font-size: 20px;
+    }
+
+    .temp span {
+        font-size: 58px;
+    }
+
+    .info-card {
+        padding: 16px 14px;
+    }
+
+    .info-card p {
+        font-size: 16px;
+    }
+
+    /* Forecast cards */
+    .day-card {
+        min-width: 105px;
+    }
+
+    /* Hourly */
+    .hour-card {
+        flex: 0 0 100px;
+        min-height: 188px;
+    }
+
+    .hour-temp {
+        font-size: 20px;
+    }
+
+    /* AQI */
+    .aqi-details {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* ============================================================
+   ≤ 768px — Tablet Portrait / iPad Mini / iPad Portrait
+   Header becomes 2-row, main-card stacks vertically
+   ============================================================ */
+@media (max-width: 768px) {
+
+    /* Container: no side padding (sections handle their own) */
+    .container {
+        padding: 0 0 36px;
+    }
+
+    /* ── Header: 2-row grid ── */
+    .app-header {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        gap: 10px 12px;
+        padding: 14px 18px;
+        border-radius: 0 0 var(--radius-md) var(--radius-md);
+    }
+
+    .header-brand {
+        grid-column: 1;
+        grid-row: 1;
+        align-self: center;
+    }
+
+    .header-brand h1 {
+        font-size: 17px;
+    }
+
+    .header-brand .subtitle {
+        display: none;
+    }
+
+    .header-controls {
+        grid-column: 2;
+        grid-row: 1;
+        gap: 8px;
+    }
+
+    /* Search spans full width on row 2 */
+    .header-search-wrapper {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    /* ── Sections spacing ── */
+    .favorite-section {
+        margin: 14px 14px 0;
+        border-radius: var(--radius-md);
+    }
+
+    .dashboard-layout {
+        padding: 0 14px;
+        margin-top: 14px;
+    }
+
+    /* ── Main card: stack ── */
+    .main-card {
+        flex-direction: column;
+        min-height: unset;
+        border-radius: var(--radius-md);
+    }
+
+    .left {
+        flex: none;
+        width: 100%;
+        text-align: center;
+        align-items: center;
+        padding: 28px 20px 24px;
+        border-radius: var(--radius-md) var(--radius-md) 0 0;
+    }
+
+    .left::after {
+        display: none;
+    }
+
+    .left #cityName {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .left .favorite-btn {
+        align-self: center;
+    }
+
+    .temp span {
+        font-size: 64px;
+    }
+
+    /* Right: 2-col grid, flush bottom */
+    .right {
+        border-radius: 0 0 var(--radius-md) var(--radius-md);
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .info-card {
+        padding: 16px 12px;
+        gap: 10px;
+    }
+
+    .info-card i    { font-size: 20px; width: 22px; }
+    .info-card h4   { font-size: 11px; }
+    .info-card p    { font-size: 16px; }
+
+    /* ── Shared section cards ── */
+    .hourly-section,
+    .chart-section,
+    .forecast-section,
+    .air-quality-section {
+        border-radius: var(--radius-md);
+        padding: 18px 16px;
+    }
+
+    /* ── Hourly ── */
+    .hour-card {
+        flex: 0 0 96px;
+        min-height: 180px;
+        padding: 14px 8px;
+    }
+
+    .hour-card img  { width: 42px; height: 42px; }
+    .hour-temp      { font-size: 19px; }
+
+    /* ── Chart ── */
+    .chart-wrapper  { height: 220px; }
+
+    /* ── Forecast (horizontal) ── */
+    .forecast-container {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 12px;
+    }
+
+    .day-card { min-width: 105px; }
+
+    /* ── Air quality ── */
+    .aqi-details { grid-template-columns: repeat(3, 1fr); }
+    .aqi-status  { font-size: 22px; }
+
+    /* ── Favorites ── */
+    .favorite-card { min-width: 130px; }
+
+    /* ── Controls ── */
+    #locationBtn {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .unit-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+}
+
+
+/* ============================================================
+   ≤ 600px — Large Mobile / Small Tablet
+   ============================================================ */
+@media (max-width: 600px) {
+
+    .app-header {
+        padding: 12px 14px;
+    }
+
+    .header-brand h1 {
+        font-size: 15px;
+    }
+
+    /* Collapse location btn to icon only */
+    #locationBtn .loc-text {
+        display: none;
+    }
+
+    #locationBtn {
+        padding: 8px 10px;
+    }
+
+    .favorite-section {
+        margin: 12px 12px 0;
+    }
+
+    .dashboard-layout {
+        padding: 0 12px;
+        margin-top: 12px;
+        gap: 12px;
+    }
+
+    /* Main card */
+    .temp span { font-size: 58px; }
+
+    .right {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Hourly */
+    .hour-card {
+        flex: 0 0 88px;
+        min-height: 170px;
+    }
+
+    .hour-card img  { width: 38px; height: 38px; }
+    .hour-temp      { font-size: 17px; }
+
+    .rain { padding: 5px 7px; font-size: 11px; }
+    .rain i { font-size: 11px; }
+
+    /* Chart */
+    .chart-wrapper  { height: 200px; }
+
+    /* Forecast */
+    .day-card {
+        min-width: 95px;
+        padding: 12px 8px;
+    }
+
+    .day-card img   { width: 38px; height: 38px; }
+    .day-card h3    { font-size: 12px; }
+
+    /* Air quality */
+    .aqi-details { grid-template-columns: repeat(2, 1fr); }
+
+    /* Section padding */
+    .hourly-section,
+    .chart-section,
+    .forecast-section,
+    .air-quality-section {
+        padding: 16px 14px;
+    }
+}
+
+
+/* ============================================================
+   ≤ 480px — Mobile (iPhone 14, Pixel, Galaxy)
+   ============================================================ */
+@media (max-width: 480px) {
+
+    .favorite-section { margin: 10px 10px 0; }
+
+    .dashboard-layout {
+        padding: 0 10px;
+        margin-top: 10px;
+        gap: 10px;
+    }
+
+    /* Main card */
+    .left {
+        padding: 24px 16px 20px;
+    }
+
+    .left #cityName { font-size: 20px; }
+    .temp span      { font-size: 52px; }
+
+    #weatherIcon    { width: 60px; height: 60px; }
+    #condition      { font-size: 14px; }
+
+    /* Info cards stay 2-col */
+    .right { grid-template-columns: repeat(2, 1fr); }
+
+    .info-card { padding: 14px 10px; gap: 8px; }
+    .info-card i    { font-size: 18px; width: 20px; }
+    .info-card h4   { font-size: 10.5px; }
+    .info-card p    { font-size: 15px; }
+
+    /* Hourly */
+    .hour-card {
+        flex: 0 0 82px;
+        min-height: 162px;
+        padding: 12px 6px;
+    }
+
+    .hour-card img  { width: 34px; height: 34px; }
+    .hour-temp      { font-size: 16px; }
+    .hour-time      { font-size: 11.5px; }
+
+    /* Chart */
+    .chart-wrapper  { height: 185px; }
+
+    /* Forecast */
+    .day-card {
+        min-width: 88px;
+        padding: 10px 6px;
+    }
+
+    .day-card img   { width: 34px; height: 34px; }
+
+    /* AQI */
+    .aqi-details    { grid-template-columns: repeat(2, 1fr); }
+    .aqi-status     { font-size: 20px; }
+
+    /* Toggle switch smaller */
+    .theme-toggle {
+        width: 58px;
+        height: 30px;
+        border-radius: 15px;
+    }
+
+    .toggle-thumb {
+        width: 22px;
+        height: 22px;
+    }
+
+    /* travel = 58 - 4 - 4 - 22 = 28px */
+    body:not(.dark-mode) .toggle-thumb {
+        transform: translateX(28px);
+    }
+
+    .toggle-thumb .fa-sun  { font-size: 11px; }
+    .toggle-thumb .fa-moon { font-size: 10px; }
+
+    /* Sections */
+    .hourly-section,
+    .chart-section,
+    .forecast-section,
+    .air-quality-section {
+        padding: 14px 12px;
+        border-radius: var(--radius-sm);
+    }
+}
+
+
+/* ============================================================
+   ≤ 390px — Small Mobile (iPhone SE, Galaxy S)
+   ============================================================ */
+@media (max-width: 390px) {
+
+    .app-header {
+        padding: 10px 12px;
+        gap: 8px 10px;
+    }
+
+    .header-brand h1 { font-size: 14px; }
+
+    .header-controls { gap: 6px; }
+
+    .unit-btn {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+
+    .dashboard-layout {
+        padding: 0 8px;
+        gap: 8px;
+    }
+
+    .left { padding: 20px 14px 18px; }
+    .left #cityName { font-size: 18px; }
+    .temp span      { font-size: 48px; }
+
+    .info-card { padding: 12px 8px; }
+    .info-card p    { font-size: 14px; }
+
+    .hour-card {
+        flex: 0 0 76px;
+        min-height: 155px;
+    }
+
+    .hour-card img  { width: 30px; height: 30px; }
+    .hour-temp      { font-size: 15px; }
+
+    .chart-wrapper  { height: 170px; }
+
+    .day-card       { min-width: 80px; }
+
+    .aqi-details    { grid-template-columns: repeat(2, 1fr); gap: 7px; }
+
+    /* Sections */
+    .hourly-section,
+    .chart-section,
+    .forecast-section,
+    .air-quality-section {
+        padding: 12px 10px;
+    }
+
+    .favorite-section { margin: 8px 8px 0; padding: 14px; }
+}
+
+
+/* ============================================================
+   ≤ 320px — Very Small Mobile
+   ============================================================ */
+@media (max-width: 320px) {
+
+    .header-brand h1    { font-size: 13px; }
+
+    .temp span          { font-size: 42px; }
+
+    .info-card p        { font-size: 13px; }
+
+    .hour-card          { flex: 0 0 70px; min-height: 148px; }
+    .hour-card img      { width: 28px; height: 28px; }
+    .hour-temp          { font-size: 14px; }
+
+    .chart-wrapper      { height: 155px; }
+
+    .day-card           { min-width: 72px; padding: 8px 4px; }
+    .day-card img       { width: 28px; height: 28px; }
+
+    .aqi-details        { grid-template-columns: 1fr 1fr; gap: 6px; }
+
+    .toggle-thumb .fa-sun,
+    .toggle-thumb .fa-moon { font-size: 9px; }
+}

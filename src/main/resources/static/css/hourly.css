@@ -1,0 +1,198 @@
+/* ============================================
+   HOURLY SECTION
+   (bg, padding, shadow, h2 → inherited from style.css)
+   ============================================ */
+
+/* Clip overflow so cards never push the page width */
+.hourly-section {
+    overflow: hidden;
+    /* ensure section never exceeds its grid cell */
+    min-width: 0;
+}
+
+/* ============================================
+   HOURLY CONTAINER  —  horizontal scroll strip
+   ============================================ */
+.hourly-container {
+    display: flex;
+    gap: 12px;
+    /* internal horizontal scroll only */
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* bottom padding gives scrollbar breathing room */
+    padding: 4px 2px 14px;
+    /* smooth momentum scroll on touch/trackpad */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    /* CRITICAL: prevent this flex row from pushing parent width */
+    width: 100%;
+}
+
+/* Custom scrollbar */
+.hourly-container::-webkit-scrollbar {
+    height: 5px;
+}
+
+.hourly-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.hourly-container::-webkit-scrollbar-thumb {
+    background: var(--border-card);
+    border-radius: 10px;
+    transition: background var(--transition);
+}
+
+.hourly-container::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+
+/* ============================================
+   HOUR CARD
+   ============================================ */
+.hour-card {
+    /* fixed width — cards don't grow/shrink */
+    flex: 0 0 110px;
+    min-height: 200px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px 10px;
+
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-md);
+
+    transition: transform var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+
+    cursor: default;
+}
+
+.hour-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+    background: var(--bg-card-hover);
+}
+
+/* ============================================
+   TIME label
+   ============================================ */
+.hour-time {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-card-title);
+    letter-spacing: 0.2px;
+}
+
+/* ============================================
+   WEATHER ICON
+   ============================================ */
+.hour-card img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.10));
+}
+
+/* ============================================
+   TEMPERATURE
+   ============================================ */
+.hour-temp {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-heading);
+    letter-spacing: -0.5px;
+    line-height: 1;
+}
+
+/* ============================================
+   RAIN INDICATOR
+   ============================================ */
+.rain {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    width: 100%;
+    padding: 6px 8px;
+
+    background: var(--bg-input);
+    border-radius: 8px;
+
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.rain i {
+    font-size: 12px;
+    color: #4da3ff;
+    flex-shrink: 0;
+}
+
+.rain span {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    overflow: hidden;
+}
+
+.rain small {
+    font-size: 9.5px;
+    font-weight: 500;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.rain strong {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-body);
+    white-space: nowrap;
+}
+
+/* ============================================
+   ACTIVE HOUR  —  current time highlight
+   ============================================ */
+.active-hour {
+    background: linear-gradient(160deg, #2d7ff9 0%, #1258b0 100%);
+    border-color: transparent;
+
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(45, 127, 249, 0.32);
+}
+
+/* Keep hover elevated, no extra lift */
+.active-hour:hover {
+    transform: translateY(-4px);
+    background: linear-gradient(160deg, #2d7ff9 0%, #1258b0 100%);
+}
+
+.active-hour .hour-time {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.active-hour .hour-temp {
+    color: #ffffff;
+}
+
+.active-hour .rain {
+    background: rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.active-hour .rain i {
+    color: #ffffff;
+}
+
+.active-hour .rain small {
+    color: rgba(255, 255, 255, 0.70);
+}
+
+.active-hour .rain strong {
+    color: #ffffff;
+}

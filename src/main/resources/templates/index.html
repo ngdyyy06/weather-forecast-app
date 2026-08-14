@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+
+    <link rel="icon" type="image/png" href="/weather.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/current.css">
+    <link rel="stylesheet" href="/css/forecast.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/hourly.css">
+    <link rel="stylesheet" href="/css/chart.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<!-- Toast & Confirm Modals -->
+<div id="toast" class="toast"></div>
+
+<div id="confirm" class="confirm-box">
+    <div class="confirm-content">
+        <h3>Delete favourite?</h3>
+        <p>Are you sure?</p>
+        <div class="confirm-buttons">
+            <button id="confirmCancel">Cancel</button>
+            <button id="confirmDelete">Delete</button>
+        </div>
+    </div>
+</div>
+
+<body>
+<div class="container">
+
+    <!-- Top Header Bar -->
+    <header class="app-header">
+        <div class="header-brand">
+            <h1>🌤 Weather Forecast</h1>
+            <p class="subtitle">Check weather conditions for any city worldwide</p>
+        </div>
+
+        <div class="header-search-wrapper">
+            <form id="weatherForm" class="search-box">
+                <input
+                        type="text"
+                        id="city"
+                        placeholder="Enter city name..."
+                        autocomplete="off">
+                <button type="submit">
+                    🔍 Search
+                </button>
+            </form>
+            <div id="suggestions"></div>
+            <div id="errorMessage" class="error-message"></div>
+        </div>
+
+        <div class="header-controls">
+            <button type="button" id="locationBtn">
+                📍 My Location
+            </button>
+
+            <div class="unit-toggle">
+                <button id="celsiusBtn" class="unit-btn active">°C</button>
+                <button id="fahrenheitBtn" class="unit-btn">°F</button>
+            </div>
+
+            <!-- Mới -->
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+    <span class="toggle-thumb">
+        <i class="fa-solid fa-sun"></i>
+        <i class="fa-solid fa-moon"></i>
+    </span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Favorite Cities Section -->
+    <section class="favorite-section">
+        <h2>⭐ Favorite Cities</h2>
+        <div id="favoriteList" class="favorite-list">
+            <!-- Favorite cities sẽ được JS thêm vào đây -->
+        </div>
+    </section>
+
+    <!-- Loading State -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <span>Loading weather data...</span>
+    </div>
+
+    <!-- Main Dashboard Grid (2 Columns Layout) -->
+    <main class="dashboard-layout">
+
+        <!-- Left Column: Current Weather, Hourly, Chart -->
+        <div class="dashboard-left">
+
+            <div class="main-card">
+                <div class="left">
+                    <h2 id="cityName">--</h2>
+                    <button id="favoriteBtn" class="favorite-btn">
+                        <i class="fa-regular fa-star"></i>
+                        Favorite
+                    </button>
+                    <div class="temp">
+                        <span id="temperature">-- °C</span>
+                    </div>
+                    <img id="weatherIcon" src="" alt="Weather Icon">
+                    <p id="condition">---</p>
+                </div>
+
+                <div class="right">
+                    <div class="info-card">
+                        <i class="fa-solid fa-droplet"></i>
+                        <div>
+                            <h4>Humidity</h4>
+                            <p id="humidity">--</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <i class="fa-solid fa-wind"></i>
+                        <div>
+                            <h4>Wind Speed</h4>
+                            <p id="wind">--</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <i class="fa-solid fa-temperature-half"></i>
+                        <div>
+                            <h4>Feels Like</h4>
+                            <p id="feelslike">--</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <i class="fa-solid fa-eye"></i>
+                        <div>
+                            <h4>Visibility</h4>
+                            <p id="visibility">--</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <i class="fa-solid fa-gauge-high"></i>
+                        <div>
+                            <h4>Pressure</h4>
+                            <p id="pressure">--</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <i class="fa-solid fa-sun"></i>
+                        <div>
+                            <h4>UV Index</h4>
+                            <p id="uv">--</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="hourly-section">
+                <h2>Today's Hourly Forecast</h2>
+                <div id="hourlyForecast" class="hourly-container"></div>
+            </section>
+
+            <section class="chart-section">
+                <h2>24-Hour Temperature</h2>
+                <div class="chart-wrapper">
+                    <canvas id="temperatureChart"></canvas>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Right Column: 7-Day Forecast & Air Quality -->
+        <div class="dashboard-right">
+
+            <section class="forecast-section">
+                <h2>7-Day Forecast</h2>
+                <div id="forecast" class="forecast-container"></div>
+            </section>
+
+            <section class="air-quality-section">
+                <h2>Air Quality</h2>
+                <div class="air-quality-card">
+                    <div class="aqi-main">
+                        <div>
+                            <span class="aqi-label">Air Quality</span>
+                            <p id="aqiStatus" class="aqi-status">--</p>
+                        </div>
+                    </div>
+
+                    <div class="aqi-details">
+                        <div>
+                            <span>PM2.5</span>
+                            <strong id="pm25">--</strong>
+                        </div>
+                        <div>
+                            <span>PM10</span>
+                            <strong id="pm10">--</strong>
+                        </div>
+                        <div>
+                            <span>CO</span>
+                            <strong id="co">--</strong>
+                        </div>
+                        <div>
+                            <span>NO₂</span>
+                            <strong id="no2">--</strong>
+                        </div>
+                        <div>
+                            <span>O₃</span>
+                            <strong id="o3">--</strong>
+                        </div>
+                        <div>
+                            <span>SO₂</span>
+                            <strong id="so2">--</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/weather.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>

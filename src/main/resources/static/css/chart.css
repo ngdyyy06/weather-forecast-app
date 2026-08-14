@@ -1,0 +1,42 @@
+/* ============================================
+   CHART SECTION
+   bg, padding, shadow, border-radius, h2 color
+   → all inherited from style.css shared card rules
+   ============================================ */
+
+/* ============================================
+   CHART WRAPPER  —  canvas container
+   ============================================ */
+.chart-wrapper {
+    position: relative;
+    width: 100%;
+    /* responsive height: taller on big screens, sensible on smaller */
+    height: clamp(220px, 28vh, 300px);
+
+    /* subtle inner background to separate canvas from card */
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-card);
+
+    padding: 12px;
+
+    /* smooth dark/light transition */
+    transition: background var(--transition), border-color var(--transition);
+}
+
+/* Canvas fills the wrapper */
+.chart-wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ============================================
+   LEGACY .chart-container
+   (kept for backward compat if JS references it)
+   ============================================ */
+.chart-container {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border-radius: inherit;
+}
