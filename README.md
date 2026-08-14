@@ -1,5 +1,20 @@
-🌤 Weather Forecast App
-A modern, full-stack weather forecast web application built with Spring Boot and Vanilla JavaScript. Get real-time weather data, 7-day forecasts, hourly temperature charts, and air quality metrics for any city worldwide.
+<div align="center">
+
+# 🌤️ Weather Forecast Web Application
+
+A modern, responsive full-stack weather dashboard built with **Spring Boot** and **Vanilla JavaScript**.
+
+<br/>
+
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Website-2d7ff9?style=for-the-badge&logoColor=white)](https://ngdyyy-weather.onrender.com)
+
+**🔗 Trải nghiệm trực tiếp tại:** [https://ngdyyy-weather.onrender.com](https://ngdyyy-weather.onrender.com)
+
+<br/>
+
+</div>
+
+---
 
 JavaSpring Boot JavaScript WeatherAPI License
 
