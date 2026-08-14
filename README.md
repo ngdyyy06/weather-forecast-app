@@ -38,56 +38,9 @@ Maven	Dependency management
 External API
 Service	Usage
 WeatherAPI.com	Current weather, forecasts, air quality
-📁 Project Structure
 
-weatherapp/
-├── src/
-│   └── main/
-│       ├── java/
-│       │   └── weatherapp/
-│       │       ├── config/
-│       │       │   └── RestClientConfig.java        # RestClient / WebClient configuration
-│       │       ├── controller/
-│       │       │   ├── FavouriteController.java     # Favorite cities CRUD endpoints
-│       │       │   ├── HomeController.java          # Home / view routing
-│       │       │   └── WeatherController.java       # Weather forecast REST API
-│       │       ├── dto/
-│       │       │   ├── AirQuality.java              # Air quality data model
-│       │       │   ├── Condition.java               # Weather condition details
-│       │       │   ├── Current.java                 # Current weather metrics
-│       │       │   ├── Day.java                     # Daily forecast metrics
-│       │       │   ├── Forecast.java                # Forecast container
-│       │       │   ├── ForecastDay.java             # Daily forecast item
-│       │       │   ├── Hour.java                    # Hourly data item
-│       │       │   ├── Location.java                # Geolocation info
-│       │       │   └── WeatherResponse.java         # Root WeatherAPI response mapping
-│       │       ├── entity/
-│       │       │   └── City.java                    # JPA Entity for favorite cities
-│       │       ├── responsitory/
-│       │       │   └── CityRepository.java          # Spring Data JPA Repository
-│       │       ├── service/
-│       │       │   └── WeatherService.java          # WeatherAPI integration & business logic
-│       │       └── WeatherappApplication.java       # Spring Boot main application entry
-│       └── resources/
-│           ├── application.properties               # App configuration & Database setup
-│           └── static/
-│               ├── index.html                       # Single Page Application UI
-│               ├── weather.png                      # App favicon
-│               ├── css/
-│               │   ├── style.css                    # Base theme variables, header & layout
-│               │   ├── current.css                  # Hero current weather card & AQI
-│               │   ├── forecast.css                 # 7-day forecast sidebar styling
-│               │   ├── hourly.css                   # Hourly forecast horizontal carousel
-│               │   ├── chart.css                    # 24-hour temperature chart
-│               │   └── responsive.css               # Responsive design for mobile & tablet
-│               └── js/
-│                   ├── script.js                    # UI interactions, theme & event handling
-│                   └── weather.js                   # API communication & DOM rendering
-├── Dockerfile                                       # Containerization for cloud deployment
-├── pom.xml                                          # Maven dependencies (Spring Boot, H2, JPA)
-├── .env.example                                     # Environment variable template
-├── .gitignore                                       # Git ignore configuration
-└── README.md
+## 📁 Project Structure
+
 🚀 Getting Started
 Prerequisites
 Java 17+ — Download JDK
