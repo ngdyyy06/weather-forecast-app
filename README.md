@@ -1,7 +1,7 @@
 🌤 Weather Forecast App
 A modern, full-stack weather forecast web application built with Spring Boot and Vanilla JavaScript. Get real-time weather data, 7-day forecasts, hourly temperature charts, and air quality metrics for any city worldwide.
 
-JavaSpring BootJavaScriptWeatherAPILicense
+JavaSpring Boot JavaScript WeatherAPI License
 
 📸 Preview
 <img width="1901" height="911" alt="Screenshot 2026-08-15 015642" src="https://github.com/user-attachments/assets/2ca55d81-d23e-4508-bea0-7bba7a45913d" />
@@ -53,13 +53,18 @@ JavaSpring BootJavaScriptWeatherAPILicense
 - **`service/`** — `WeatherService.java` (Xử lý logic và gọi WeatherAPI)
 - **`resources/static/`** — Giao diện Single Page Dashboard (`HTML`, `Vanilla CSS`, `JS`, `Chart.js`)
 
-🚀 Getting Started
-Prerequisites
-Java 17+ — Download JDK
-Maven 3.8+ — Download Maven
-WeatherAPI Key — Get free key (free tier: 1M calls/month)
-1. Clone the Repository
-bash
+## 🚀 Getting Started
+
+### Prerequisites
+- **Java 21** or higher
+- **Maven 3.8+**
+
+---
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/ngdyyy06/weather-forecast-app.git
+cd weather-forecast-app
 
 git clone https://github.com/ngdyyy06/weather-forecast.git
 cd weather-forecast
