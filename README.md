@@ -39,8 +39,15 @@ External API
 Service	Usage
 WeatherAPI.com	Current weather, forecasts, air quality
 
-## 📁 Project Structure
-weatherapp/ ├── src/main/java/weatherapp/ │ ├── config/ # RestClient & CORS configuration │ ├── controller/ # REST API & Web routing (Weather, Favourite, Home) │ ├── dto/ # WeatherAPI data models (Current, Forecast, AirQuality...) │ ├── entity/ # JPA Entity (City) │ ├── responsitory/ # Spring Data JPA Repository (CityRepository) │ ├── service/ # WeatherAPI service & business logic │ └── WeatherappApplication.java │ ├── src/main/resources/ │ ├── application.properties # App & Database config │ └── static/ │ ├── css/ # Modular CSS (style, current, hourly, responsive...) │ ├── js/ # Vanilla JS (script.js, weather.js) │ └── index.html # Main Dashboard UI │ ├── Dockerfile # Cloud container configuration (Java 21) ├── pom.xml # Maven dependencies (Spring Boot, H2, JPA) └── README.md
+## 📁 Project Architecture
+
+- **`config/`** — `RestClientConfig.java` (Cấu hình kết nối HTTP client)
+- **`controller/`** — `WeatherController`, `FavouriteController`, `HomeController` (Điều hướng và cung cấp REST API)
+- **`dto/`** — Chứa các Data Transfer Objects (`WeatherResponse`, `Forecast`, `AirQuality`, `Current`...)
+- **`entity/`** — `City.java` (Lưu thông tin thành phố yêu thích vào Database)
+- **`responsitory/`** — `CityRepository.java` (Thao tác dữ liệu với Spring Data JPA)
+- **`service/`** — `WeatherService.java` (Xử lý logic và gọi WeatherAPI)
+- **`resources/static/`** — Giao diện Single Page Dashboard (`HTML`, `Vanilla CSS`, `JS`, `Chart.js`)
 
 🚀 Getting Started
 Prerequisites
