@@ -117,7 +117,7 @@ Open src/main/resources/application.properties:
 
 properties
 
-server.port=8080
+server.port=https://ngdyyy-weather.onrender.com/
 weather.api.key=${WEATHER_API_KEY}
 weather.api.base-url=https://api.weatherapi.com/v1
 4. Run the Application
