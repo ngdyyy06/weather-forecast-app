@@ -6,12 +6,6 @@ JavaSpring BootJavaScriptWeatherAPILicense
 📸 Preview
 <img width="1901" height="911" alt="Screenshot 2026-08-15 015642" src="https://github.com/user-attachments/assets/2ca55d81-d23e-4508-bea0-7bba7a45913d" />
 
-| ☀️ Light Mode | 🌙 Dark Mode |
-| :---: | :---: |
-| <img width="1900" height="911" alt="image" src="https://github.com/user-attachments/assets/16028d5d-5cfa-4ab5-998e-cf3a28b63d49" />
- | <img width="1898" height="913" alt="image" src="https://github.com/user-attachments/assets/089480f6-4dbe-4102-a60c-bc5d3429f611" />
- |
-
 ---
 
 ## ✨ Features
