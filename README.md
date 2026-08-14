@@ -6,38 +6,46 @@ JavaSpring BootJavaScriptWeatherAPILicense
 📸 Preview
 <img width="1901" height="911" alt="Screenshot 2026-08-15 015642" src="https://github.com/user-attachments/assets/2ca55d81-d23e-4508-bea0-7bba7a45913d" />
 
+| ☀️ Light Mode | 🌙 Dark Mode |
+| :---: | :---: |
+| *(Dán ảnh Light Mode vào đây)* | *(Dán ảnh Dark Mode vào đây)* |
 
-Light Mode	Dark Mode
-Light	Dark
-✨ Features
-🔍 City Search — Search weather for any city with autocomplete suggestions
-📍 My Location — One-click geolocation weather detection
-🌡️ Current Weather — Temperature, humidity, wind speed, feels like, visibility, pressure, UV index
-📅 7-Day Forecast — Daily high/low temperatures with weather icons
-⏱️ Hourly Forecast — Today's hour-by-hour weather with rain probability
-📊 24-Hour Temperature Chart — Interactive line chart powered by Chart.js
-🌫️ Air Quality Index — PM2.5, PM10, CO, NO₂, O₃, SO₂ readings
-⭐ Favorite Cities — Save and quickly access your favorite locations
-🌡️ °C / °F Toggle — Switch between Celsius and Fahrenheit instantly
-🌙 Dark / Light Mode — Smooth animated toggle switch with persistence
-📱 Fully Responsive — Optimized for all devices (mobile, tablet, iPad, laptop, desktop)
-🛠️ Tech Stack
-Frontend
-Technology	Purpose
-HTML5 / CSS3	Structure & Styling
-Vanilla JavaScript (ES6+)	Client-side logic, DOM, LocalStorage
-Chart.js	24-hour temperature chart
-Font Awesome 6	Icons
-Google Fonts — Poppins	Typography
-Backend
-Technology	Purpose
-Java 17+	Core language
-Spring Boot 3.x	Web framework, REST API
-Spring Web	HTTP request handling
-Maven	Dependency management
-External API
-Service	Usage
-WeatherAPI.com	Current weather, forecasts, air quality
+---
+
+## ✨ Features
+
+- 🔍 **City Search**  
+  Tìm kiếm thời tiết cho bất kỳ thành phố nào với tính năng gợi ý autocomplete thông minh.
+
+- 📍 **My Location**  
+  Tự động định vị GPS để lấy dữ liệu thời tiết tại vị trí hiện tại với 1 click.
+
+- 🌡️ **Real-Time Weather Metrics**  
+  Hiển thị đầy đủ nhiệt độ, độ ẩm, tốc độ gió, cảm giác thực tế (feels like), tầm nhìn, áp suất khí quyển và chỉ số UV Index.
+
+- ⏱️ **Today's Hourly Forecast**  
+  Dự báo thời tiết chi tiết theo từng giờ trong ngày kèm xác suất có mưa và biểu tượng thời tiết.
+
+- 📊 **24-Hour Temperature Chart**  
+  Biểu đồ đường trực quan hóa biến thiên nhiệt độ 24 giờ liên tục được tích hợp bằng Chart.js.
+
+- 📅 **7-Day Daily Forecast**  
+  Dự báo thời tiết 7 ngày tiếp theo với nhiệt độ cao nhất/thấp nhất và icon trực quan.
+
+- 🌫️ **Air Quality Index (AQI)**  
+  Đo lường chi tiết chất lượng không khí gồm các hạt ô nhiễm: PM2.5, PM10, CO, NO₂, O₃, SO₂.
+
+- ⭐ **Favorite Cities Management**  
+  Lưu, xem nhanh và quản lý danh sách các thành phố yêu thích được đồng bộ với cơ sở dữ liệu.
+
+- 🌡️ **°C / °F Unit Toggle**  
+  Chuyển đổi linh hoạt giữa độ C và độ F ngay tức thì.
+
+- 🌙 **Animated Dark / Light Mode Switch**  
+  Công tắc trượt chuyển đổi giao diện sáng/tối mượt mà và tự động lưu trạng thái.
+
+- 📱 **Fully Responsive Layout**  
+  Giao diện tối ưu hoàn hảo trên mọi thiết bị (Mobile, Tablet, iPad, Laptop, PC).
 
 ## 📁 Project Architecture
 
