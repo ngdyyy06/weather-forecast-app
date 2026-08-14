@@ -40,6 +40,7 @@ Service	Usage
 WeatherAPI.com	Current weather, forecasts, air quality
 
 ## 📁 Project Structure
+weatherapp/ ├── src/main/java/weatherapp/ │ ├── config/ # RestClient & CORS configuration │ ├── controller/ # REST API & Web routing (Weather, Favourite, Home) │ ├── dto/ # WeatherAPI data models (Current, Forecast, AirQuality...) │ ├── entity/ # JPA Entity (City) │ ├── responsitory/ # Spring Data JPA Repository (CityRepository) │ ├── service/ # WeatherAPI service & business logic │ └── WeatherappApplication.java │ ├── src/main/resources/ │ ├── application.properties # App & Database config │ └── static/ │ ├── css/ # Modular CSS (style, current, hourly, responsive...) │ ├── js/ # Vanilla JS (script.js, weather.js) │ └── index.html # Main Dashboard UI │ ├── Dockerfile # Cloud container configuration (Java 21) ├── pom.xml # Maven dependencies (Spring Boot, H2, JPA) └── README.md
 
 🚀 Getting Started
 Prerequisites
