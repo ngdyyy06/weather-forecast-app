@@ -297,7 +297,7 @@ function showTemperatureChart(hours) {
 
                     title: {
                         display: true,
-                        text: "Temperature (°C)"
+                        text: `Temperature (°${currentUnit})`
                     }
                 }
             }
