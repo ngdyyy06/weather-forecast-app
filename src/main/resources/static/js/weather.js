@@ -450,10 +450,19 @@ async function loadFavorites() {
                 method: "DELETE"
             });
 
-            if (response.ok) {
-                await loadFavorites();  // favor hiển thị luon k cần reload trang
-            }
-        });
+                    if (!response.ok) {
+                        showToast("Can't delete favorite city");
+                        return;
+                    }
+
+                    showToast("Remove from favorite");
+                    await loadFavorites();  // favor hiển thị luon k cần reload trang
+
+                } catch (error) {
+                    console.error("Delete favorite error:", error);
+                    showToast("Unable to delete favorite city!");
+                }
+            });
 
         card.addEventListener("click", () => {
             searchWeather(city.name);
