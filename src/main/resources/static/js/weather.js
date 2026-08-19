@@ -459,8 +459,11 @@ async function loadFavorites() {
             searchWeather(city.name);
         })
 
-        favoritesList.appendChild(card);
-    })
+            favoritesList.appendChild(card);
+        })
+    } catch (error) {
+        console.log("Load favorite error: ", error);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
