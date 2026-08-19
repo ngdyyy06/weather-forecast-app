@@ -10,8 +10,7 @@ import java.util.List;
 @RestController   // nói với Spring class này tạo API để JavaScript gọi
 @RequestMapping("/favorite")   // API bắt đầu bằng /favorite
 public class FavouriteController {
-    @Autowired
-    private CityRepository cityRepository;
+    private final CityRepository cityRepository;
 
     public FavouriteController (CityRepository cityRepository) {
         this.cityRepository = cityRepository;

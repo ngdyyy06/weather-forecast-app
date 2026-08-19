@@ -49,15 +49,10 @@ async function searchWeather(city) {
 
         const data = await response.json();  // Chuyển dự liệu từ Json thành Object JavaScript để xử lí
 
-        console.log("Location name:", data.location.name);
-        console.log("Country:", data.location.country);
-
         lastWeatherData = data;  // lastWeatherData sẽ giữ toàn bộ object API trả về.
 
         currentCityData = data;
         currentCity = city;
-
-        console.log(data.forecast.forecastday[0]);
 
         const icon = document.getElementById("weatherIcon");
         icon.src = "https:" + data.current.condition.icon;
@@ -97,54 +92,22 @@ async function searchWeather(city) {
         aqiStatus.textContent = status;
         aqiStatus.className = "aqi-status " + statusClass;
 
-        document.getElementById("cityName").textContent =
-            data.location.name + ", " + data.location.country;
+        setText("cityName", data.location.name + ", " + data.location.country);
+        setText("temperature", formatTemperature(data.current.temp_c));
+        setText("condition", data.current.condition.text);
+        setText("humidity", data.current.humidity + "%");
+        setText("wind", data.current.wind_kph + " km/h");
+        setText("feelslike", data.current.feelslike_c);
+        setText("visibility", data.current.vis_km + " km");
+        setText("pressure", data.current.pressure_mb + " mb");
+        setText("uv", data.current.uv);
 
-        document.getElementById("temperature").textContent =
-            formatTemperature(data.current.temp_c);
-
-        document.getElementById("condition").textContent =
-            data.current.condition.text;
-
-        document.getElementById("humidity").textContent =
-            data.current.humidity + "%";
-
-        document.getElementById("wind").textContent =
-            data.current.wind_kph + " km/h";
-
-        document.getElementById("feelslike").textContent =
-            formatTemperature(data.current.feelslike_c);
-
-        document.getElementById("visibility").textContent =
-            data.current.vis_km + " km";
-
-        document.getElementById("pressure").textContent =
-            data.current.pressure_mb + " mb";
-
-        document.getElementById("uv").textContent =
-            data.current.uv;
-
-        document.getElementById("pm25").textContent =
-            air.pm2_5;
-
-        document.getElementById("pm10").textContent =
-            air.pm10;
-
-        document.getElementById("co").textContent =
-            air.co;
-
-        document.getElementById("no2").textContent =
-            air.no2;
-
-        document.getElementById("o3").textContent =
-            air.o3;
-
-        document.getElementById("so2").textContent =
-            air.so2;
-
-        console.log(data.current);
-        console.log(data.forecast);
-        console.log(data.forecast.forecastday);
+        setText("pm25", air.pm2_5);
+        setText("pm10", air.pm10);
+        setText("co", air.co);
+        setText("no2", air.no2);
+        setText("o3", air.o3);
+        setText("so2", air.so2);
 
         showForecast(data.forecast.forecastday);
         showHourly(data.forecast.forecastday[0].hour);
@@ -166,7 +129,7 @@ function showForecast(days) {
     days.forEach(item => {
         const date = new Date(item.date);
         let weekDay = date.toLocaleDateString("en-US", {
-            weekday: "short"
+            weekday: "short"  // viết tắt
         });
 
         const today = new Date().toISOString().split("T")[0];
@@ -199,8 +162,6 @@ function showForecast(days) {
 // hàm hiển thị weather từng khung giờ trong ngày
 function showHourly(hours) {
     const currentHour = new Date().getHours();
-
-    console.log(hours[0]);
 
     const container = document.getElementById("hourlyForecast");
     container.innerHTML = "";
@@ -244,7 +205,7 @@ function showHourly(hours) {
 // hàm hiển thị biểu đồ nhiệt độ
 function showTemperatureChart(hours) {
     const labels = [];   // trục X -> thoi gian
-    const temperature = [];  // dữ liệu nhiệt độ
+    const temperature = [];  // trục Y -> dữ liệu nhiệt độ
 
     hours.forEach(hour => {
         const time = hour.time.split(" ")[1].substring(0, 5);  // lấy 5 kí tu đầu của giờ
@@ -340,6 +301,7 @@ function updateTemperatureDisplay(data) {
 
         if (today.hour) {
             showHourly(today.hour);
+            showTemperatureChart(today.hour);
         }
     }
 }
@@ -382,42 +344,47 @@ document.getElementById("favoriteBtn").addEventListener("click", async () => {
     try {
         const response = await fetch("/favorite", {
 
-        // lấy dưới dạng JSON
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+            // lấy dưới dạng JSON
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-        body: JSON.stringify({
-            name: location.name,
-            country: location.country,
-            latitude: location.lat,
-            longitude: location.lon
-        })
-    });
+            body: JSON.stringify({
+                name: location.name,
+                country: location.country,
+                latitude: location.lat,
+                longitude: location.lon
+            })
+        });
 
-    if (response.ok) {
-        showToast("Added to favourite ⭐");
-        await loadFavorites();
+        if (response.ok) {
+            showToast("Added to favourite ⭐");
+            await loadFavorites();
+        }
+    } catch (error) {
+        console.error("Favorite error: ", error);
+        showToast("Unable to add favorite city");
     }
 });
 
 
 // hàm load mục yêu thích
 async function loadFavorites() {
-    const response = await fetch("/favorite");
+    try {
+        const response = await fetch("/favorite");
 
-    if (!response.ok) {
-        console.error("Can not load favorites");
-        return;
-    }
+        if (!response.ok) {
+            console.error("Can not load favorites");
+            return;
+        }
 
-    const favorites = await response.json();
-    const favoritesList = document.getElementById("favoriteList");
-    favoritesList.innerHTML = "";
+        const favorites = await response.json();
+        const favoritesList = document.getElementById("favoriteList");
+        favoritesList.innerHTML = "";
 
-    if (favorites.length === 0) {
-        favoritesList.innerHTML = `
+        if (favorites.length === 0) {
+            favoritesList.innerHTML = `
         <div class="favorite-empty">
             <div class="favorite-empty-icon">⭐</div>
             <h3>No favorite cities yet</h3>
@@ -425,14 +392,14 @@ async function loadFavorites() {
         </div>
     `;
 
-        return;
-    }
+            return;
+        }
 
-    favorites.forEach(city => {
-        const card = document.createElement("div");
-        card.className = "favorite-card";
+        favorites.forEach(city => {
+            const card = document.createElement("div");
+            card.className = "favorite-card";
 
-        card.innerHTML = `
+            card.innerHTML = `
     <div class="favorite-info">
         <h3>⭐ ${city.name}</h3>
         <p>${city.country}</p>
@@ -443,20 +410,21 @@ async function loadFavorites() {
     </button>
     `;
 
-        const deleteButton = card.querySelector(".delete-favorite");
+            const deleteButton = card.querySelector(".delete-favorite");
 
-        deleteButton.addEventListener("click", async (e) => {
-            e.stopPropagation();  // chặn sự kiện xem thời tiết không truyền tiếp lên card
+            deleteButton.addEventListener("click", async (e) => {
+                e.stopPropagation();  // chặn sự kiện xem thời tiết không truyền tiếp lên card
 
-            const confirmDelete = await showConfirm(`Are you sure you want to delete ${city.name} from your favorite?`);
+                const confirmDelete = await showConfirm(`Are you sure you want to delete ${city.name} from your favorite?`);
 
-            if (!confirmDelete) {
-                return;
-            }
+                if (!confirmDelete) {
+                    return;
+                }
 
-            const response = await fetch(`/favorite/${city.id}`, {
-                method: "DELETE"
-            });
+                try {
+                    const response = await fetch(`/favorite/${city.id}`, {
+                        method: "DELETE"
+                    });
 
                     if (!response.ok) {
                         showToast("Can't delete favorite city");
@@ -472,14 +440,14 @@ async function loadFavorites() {
                 }
             });
 
-        card.addEventListener("click", () => {
-            searchWeather(city.name);
-        })
+            card.addEventListener("click", () => {
+                searchWeather(city.name);
+            })
 
             favoritesList.appendChild(card);
         })
     } catch (error) {
-        console.log("Load favorite error: ", error);
+        console.error("Load favorite error: ", error);
     }
 }
 
@@ -501,9 +469,6 @@ document.getElementById("locationBtn").addEventListener("click", () => {
         // Lấy toạ độ vị trí
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-
-        console.log("Latitude: ", latitude);
-        console.log("Longitude: ", longitude);
 
         await searchWeather(`${latitude},${longitude}`);  // API lấy toạ độ và trả về city
     },
@@ -557,7 +522,7 @@ cityInput.addEventListener("input", async () => {  // bắt từng sự kiện g
             suggestions.appendChild(item);
         });
     } catch (error) {
-        console.log("Can not find suggestions: ", error);
+        console.error("Can not find suggestions: ", error);
     }
 })
 

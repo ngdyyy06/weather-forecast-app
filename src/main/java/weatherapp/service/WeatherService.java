@@ -1,15 +1,10 @@
 package weatherapp.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import weatherapp.dto.WeatherResponse;
-import weatherapp.entity.City;
-import weatherapp.responsitory.CityRepository;
-import weatherapp.entity.City;
 import tools.jackson.databind.ObjectMapper;
-
 import java.nio.charset.StandardCharsets;
 
 @Service  // Lớp xử lí nghiệp vụ
@@ -31,13 +26,11 @@ public class WeatherService {
     public WeatherResponse getWeather(String city) {      // Hiển thị trên đường path
         String url = apiUrl
                 + "?key=" + apiKey
-                + "&q=" + city
+                + "&q=" + java.net.URLEncoder.encode(city, StandardCharsets.UTF_8)
                 + "&days=7"
                 + "&aqi=yes"
                 + "&alerts=no"
                 + "&lang=en";
-
-        System.out.println(url);
 
         byte[] bytes = restClient.get()
                 .uri(url)
