@@ -26,6 +26,14 @@ function formatTemperature(celsius) {
     return celsius.toFixed(1) + " °C";
 }
 
+function setText(id, value) {
+    const element = document.getElementById(id);
+
+    if (element) {
+        element.textContent = value;
+    }
+}
+
 async function searchWeather(city) {
     hideError();
 
