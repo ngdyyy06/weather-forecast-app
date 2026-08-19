@@ -242,7 +242,11 @@ function showTemperatureChart(hours) {
         const time = hour.time.split(" ")[1].substring(0, 5);  // lấy 5 kí tu đầu của giờ
 
         labels.push(time);
-        temperature.push(hour.temp_c);
+        temperature.push(
+            currentUnit === "F"
+            ? celsiusToFahrenheit(hour.temp_c)
+                :hour.temp_c
+        );
     });
 
     const ctx = document.getElementById("temperatureChart");  // lấy vị trí canvas để vẽ biểu đồ
@@ -261,7 +265,7 @@ function showTemperatureChart(hours) {
                 data:temperature,
                 pointRadius: 4,  // kích thuoc các điểm trên đường biểu đồ
                 pointHoverRadius: 7,  // khi rê chuột vào 1 điểm sẽ phóng to
-                // tension: 0.4,   // điều chỉnh độ cong mượt của biểu đồ
+                tension: 0.4,   // điều chỉnh độ cong mượt của biểu đồ
                 fill: true
             }]
         },
