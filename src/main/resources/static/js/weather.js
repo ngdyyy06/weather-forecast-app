@@ -371,7 +371,8 @@ document.getElementById("favoriteBtn").addEventListener("click", async () => {
 
     const location = currentCityData.location;
 
-    const response = await fetch("/favorite", {
+    try {
+        const response = await fetch("/favorite", {
 
         // lấy dưới dạng JSON
         method: "POST",
