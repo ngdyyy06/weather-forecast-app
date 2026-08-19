@@ -279,7 +279,11 @@ function showTemperatureChart(hours) {
             tooltip: {   // khi rê chuột vào 1 điểm, thay vi dữ liệu thô, sẽ hiện dữ liệu dễ đọc hơn
                 callbacks: {
                     labels: function (context) {
-                        return context.parsed.y + " °C"
+                        const temp = currentUnit === "F"
+                        ? celsiusToFahrenheit(context.parsed.y)
+                            : context.parsed.y;
+
+                        return temp.toFixed(1) + " °" + currentUnit;
                     }
                 }
             },
